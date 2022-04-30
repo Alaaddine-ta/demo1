@@ -1,67 +1,92 @@
 import { FaUserAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-
-import React from 'react'
+import React,{useState} from 'react'
 
 function Login() {
+  const [username , setUsername]= useState('');
+  const [password , setPassword] = useState('');
+
+
+  const handleUsername =(e)=>{
+    setUsername(e.target.value);
+  }
+
+  const handlePassword =(e)=>{
+    setPassword(e.target.value);
+  }
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    alert("nom :" + username + " password:"+password)
+  }
+
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 login">
       <div
-        className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
+        style={{"position": "relative", "right":"65px"}}
       >
         <img
           src="./img/login_img.png"
           className="w-full"
-          alt="Sample image"
+          alt="login_image"
         />
       </div>
-        <div className="block p-6 rounded-lg  bg-white login_card" >
+        <div className="p-6 rounded-xl  bg-white login_card" >
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login </h2>
+            <h2 className="text-center text-3xl font-bold" style={{"color": "#2F5496"}}>Login </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Login to your system
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
-              <div className="relative mb-2">
-                <label htmlFor="username" className="sr-only">
-                  Username
-                </label>
-                <FaUserAlt className="pointer-events-none w-5 h-5 absolute  bg-transparent top-1/2 transform -translate-y-1/2 left-3 icon" />
+          <form className="mt-8 space-y-6" onSubmit={ (e) => handleSubmit(e) }>
+              <div className="relative mb-3.5">
+
+                <FaUserAlt className="w-5 h-5 absolute  bg-transparent top-1/2 -translate-y-1/2 left-3 icon" />
                 <input
+                  value={username}
+                  onChange={ e => {
+                    handleUsername(e)
+                  }}
                   id="username"
                   name="username"
                   type="username"
-                  className="bg-gray-50 appearance-none  block w-full pl-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="username"
+                  className="h-12 bg-gray-50  w-full pl-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Username"
                   required
                 />
               </div>
-              <div className="relative mb-2">
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <FaLock className="pointer-events-none w-6 h-6 absolute  bg-transparent top-1/2 transform -translate-y-1/2 left-3 icon" />
+              <div className="relative mb-3.5">
+                <FaLock className="w-6 h-6 absolute  bg-transparent top-1/2  -translate-y-1/2 left-3 icon" />
                 <input
+                  value={password}
+                  onChange={ e => {
+                    handlePassword(e) 
+                  }}
                   id="password"
                   name="password"
                   type="password"
-                  className="bg-gray-50 appearance-none  block w-full pl-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="h-12 bg-gray-50 w-full pl-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
                   required
                 />
                 
               </div>
-            </div>
 
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 rounded-full text-sm font-medium  text-white bg-sky-500 hover:bg-sky-600  focus:outline-none"
+              className="relative py-2 px-4 rounded-full  font-medium  text-white bg-sky-500 hover:bg-sky-600  focus:outline-none submit-login"
             > 
               Sign in
             </button>
+
+            <div class="flex justify-between items-center" style={{"height": "90px"}}>
+              <a href="#" class="font-medium text-gray-800 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">
+                Forgot password?
+              </a>      
+              <a href="#" class="font-medium text-gray-800 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">
+                Register
+              </a>  
+            </div>
           </form>
         </div>
       </div>
